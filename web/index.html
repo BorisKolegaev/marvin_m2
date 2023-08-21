@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script type='text/javascript' src='/eel.js'></script>
+    <script type='text/javascript' src='/scripts.js'></script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <button onclick="callPythonFunction()">Call Python Function</button>
+    <div id="output"></div>
+    <div id="navigation">
+        <button onclick="navigate('chat')">Chat</button>
+        <button onclick="navigate('voice')">Voice</button>
+        <button onclick="navigate('admin')">Admin panel</button>
+    </div>
+    <div id="content">
+        <!-- Content of the selected page will be loaded here -->
+    </div>
+    <script>
+        navigate('chat');
+    </script>
+</body>
+</html>
