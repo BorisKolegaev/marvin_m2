@@ -57,3 +57,32 @@ async function receiveMessage(answer) {
     messagesDiv.appendChild(newMessageDiv);
     messagesDiv.scrollTop = messagesDiv.scrollHeight;
 }
+
+
+// animation
+
+
+let animationPaused = false;
+
+function toggleAnimation() {
+    const circle = document.getElementById('circle');
+	animationPaused = !animationPaused;
+	if (animationPaused) {
+		circle.style.animationPlayState = 'paused';
+	} else {
+		circle.style.animationPlayState = 'running';
+	}
+}
+
+function pulse() {
+  var element = document.getElementById("circle");
+  element.classList.remove("spin");
+  element.classList.add("pulse");
+}
+
+function spin() {
+  var element = document.getElementById("circle");
+  element.classList.remove("pulse");
+  element.classList.add("spin");
+}
+

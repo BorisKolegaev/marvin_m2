@@ -1,10 +1,10 @@
 body {
-    background-color: #333;
+    background-color: #0e2225;
 }
 
 /* ======== NAVIGATION ========  */
 #navigation {
-    background-color: #333;
+    background-color: #0e2225;
     display: flex;
     justify-content: center;
     padding: 10px;
@@ -80,8 +80,44 @@ body {
 
 /* ======== VOICE ========  */
 
+.circle {
 
-body {
+
+}
+
+.spin {
+    transform: scale(1);
+    animation: spin 3s linear infinite;
+}
+
+.pulse {
+    animation: pulse 1s infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+	0% {
+		transform: scale(0.95);
+	}
+
+	70% {
+		transform: scale(1.1);
+	}
+
+	100% {
+		transform: scale(0.95);
+	}
+}
+
+/* body {
   margin: 0;
 }
 .fullpage-wrapper {
@@ -193,4 +229,4 @@ body {
   to {
     transform: rotate(360deg);
   }
-}
+} */
