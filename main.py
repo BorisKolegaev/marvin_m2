@@ -1,15 +1,14 @@
 import eel
+import threading
 from resources.config import PAGE_NAVIGATION
-from services.chat_gpt_service import send_msg_to_gpt
+from services.open_ai_service import OpenAiService
+from services.voice_control_service import VoiceControlService
+from services.expert_system_service import ExpertSystemService
 
-# Set the web folder and start page
+
 eel.init('web')
 
-
-@eel.expose  # Expose this function to be called from the frontend
-def my_python_function(parameter):
-    # Your Python logic here
-    return "Result from Python: " + parameter
+voice_thread = threading.Event()
 
 
 @eel.expose
@@ -19,9 +18,35 @@ def load_page(page):
 
 
 @eel.expose
-def send_msg(msg):
-    reply = send_msg_to_gpt(msg)
+def send_message(msg):
+    ess = ExpertSystemService()
+    reply = ess.work(msg)
     return reply
 
 
-eel.start('index.html', size=(800, 800))  # Start the app
+@eel.expose
+def start_voice_control():
+    global voice_thread
+    voice_thread = threading.Thread(target=VoiceControlService().start_voice_control)
+    voice_thread.start()
+
+
+@eel.expose
+def stop_voice_control():
+    pass
+
+
+@eel.expose
+def gen_image(prompt):
+    oas = OpenAiService()
+    oas.generate_img(prompt)
+
+
+@eel.expose
+def gen_txt(prompt):
+    oas = OpenAiService()
+    response = oas.generate_post(prompt)
+    return response
+
+
+eel.start('index.html', size=(800, 800))

@@ -43,7 +43,7 @@ async function sendMessage() {
 
         // Simulate a response after a short delay
         messagesDiv.scrollTop = messagesDiv.scrollHeight;
-        const response = await eel.send_msg(messageText)();
+        const response = await eel.send_message(messageText)();
         receiveMessage(response);
     }
 }
@@ -58,31 +58,63 @@ async function receiveMessage(answer) {
     messagesDiv.scrollTop = messagesDiv.scrollHeight;
 }
 
-
+//  VOICE
 // animation
 
 
 let animationPaused = false;
 
+eel.expose(toggleAnimation);
 function toggleAnimation() {
     const circle = document.getElementById('circle');
-	animationPaused = !animationPaused;
-	if (animationPaused) {
-		circle.style.animationPlayState = 'paused';
-	} else {
-		circle.style.animationPlayState = 'running';
-	}
+	element.classList.remove("spin");
+	element.classList.remove("pulse");
 }
 
+eel.expose(pulse);
 function pulse() {
   var element = document.getElementById("circle");
   element.classList.remove("spin");
   element.classList.add("pulse");
 }
 
+eel.expose(spin);
 function spin() {
   var element = document.getElementById("circle");
-  element.classList.remove("pulse");
+  /*element.classList.remove("pulse");*/
   element.classList.add("spin");
 }
 
+async function start_voice_control() {
+    const response = await eel.start_voice_control()();
+}
+
+async function stop_voice_control() {
+    const response = await eel.stop_voice_control()();
+}
+
+
+// ADMIN PANEL
+
+// gen_image
+async function gen_image() {
+    const input = document.querySelector('#img-prompt');
+    const img_prompt = input.value.trim();
+    if (img_prompt !== '') {
+        const response = await eel.gen_image(img_prompt)();
+        const generatedImg = document.getElementById('generated-img');
+        generatedImg.src = 'static/img.jpg'
+    }
+}
+
+// gen_txt
+async function gen_txt() {
+    const input = document.querySelector('#text-prompt');
+    const txt_prompt = input.value.trim();
+    if (txt_prompt !== '') {
+        const response = await eel.gen_txt(txt_prompt)();
+        const generatedTxt = document.getElementById('generated-text');
+        console.log(response);
+        generatedTxt.value = response;
+    }
+}
