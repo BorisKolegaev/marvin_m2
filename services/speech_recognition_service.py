@@ -12,7 +12,8 @@ class SpeechRecognitionService:
             cls._instance.sample_rate = 16000
             cls._instance.mic = pyaudio.PyAudio()
             #cls._instance.model_path = os.path.dirname(os.getcwd()) + "\\resources\\vosk_model"
-            cls._instance.model_path = 'D:\Projects\PyCharmWorkspace\marvin_m2\\resources\\vosk_model'
+            #cls._instance.model_path = 'D:\Projects\PyCharmWorkspace\marvin_m2\\resources\\vosk_model'
+            cls._instance.model_path = os.path.join(os.getcwd(), os.path.join('resources', 'vosk_model'))
             cls._instance.model = vosk.Model(cls._instance.model_path)
             cls._instance.kaldi_rec = vosk.KaldiRecognizer(cls._instance.model, cls._instance.sample_rate)
         return cls._instance

@@ -5,7 +5,8 @@ import requests
 
 class OpenAiService:
     def __init__(self):
-        openai.api_key = os.environ["OPENAI_API_KEY"]
+        #openai.api_key = os.environ["OPENAI_API_KEY"]
+        openai.api_key = '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'
         self.messages = [
             {"role": "system", "content": "You are a kind helpful assistant."},
         ]

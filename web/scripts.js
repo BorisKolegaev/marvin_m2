@@ -68,13 +68,12 @@ eel.expose(toggleAnimation);
 function toggleAnimation() {
     const circle = document.getElementById('circle');
 	element.classList.remove("spin");
-	element.classList.remove("pulse");
 }
 
 eel.expose(pulse);
 function pulse() {
   var element = document.getElementById("circle");
-  element.classList.remove("spin");
+  /*element.classList.remove("spin");*/
   element.classList.add("pulse");
 }
 
@@ -83,6 +82,18 @@ function spin() {
   var element = document.getElementById("circle");
   /*element.classList.remove("pulse");*/
   element.classList.add("spin");
+}
+
+eel.expose(stop_pulse);
+function stop_pulse() {
+  var element = document.getElementById("circle");
+  element.classList.remove("pulse");
+}
+
+eel.expose(stop_spin);
+function stop_spin() {
+  var element = document.getElementById("circle");
+  element.classList.remove("spin");
 }
 
 async function start_voice_control() {

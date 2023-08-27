@@ -1,6 +1,7 @@
 import os
 import webbrowser
 import subprocess
+import random
 
 import time
 from services.open_ai_service import OpenAiService
@@ -10,6 +11,7 @@ class ExpertSystemService:
 
     def __init__(self):  # создание необходимых сервисов
         self.oas = OpenAiService()
+        self.phrases = ('конечно', 'сделано', 'пожалуйста', 'выполнено')
 
     def osrun(self, cmd):  # метод для запуска программ в операционной системе
         PIPE = subprocess.PIPE
@@ -24,16 +26,16 @@ class ExpertSystemService:
         elif ("открой" in text) or ("перейди" in text):
             if ("калькулятор" in text) or ("посчитай" in text):
                 self.osrun('calc')
-                return '2'
+                return random.choice(self.phrases)
             elif ("paint" in text) or ("пэинт" in text):
                 self.osrun('mspaint')
-                return '3'
+                return random.choice(self.phrases)
             elif ("youtube" in text) or ("ютуб" in text):
                 self.openurl('http://youtube.com')
-                return '4'
+                return random.choice(self.phrases)
             elif ("сайт" in text) and ("центра" in text):
                 self.openurl('https://www.untehdon.ru/')
-                return '5'
+                return random.choice(self.phrases)
         elif ("найди" in text) or ("найти" in text):
             if ("youtube" in text) or ("ютуб" in text) or ("ютюб" in text):
                 text = text.replace('найди', '')
@@ -42,13 +44,13 @@ class ExpertSystemService:
                 text = text.replace('в интернете', '')
                 text = text.strip()
                 self.openurl('https://www.youtube.com/results?search_query=' + text)
-                return '6'
+                return random.choice(self.phrases)
             text = text.replace('найди', '')
             text = text.replace('ютуб', '')
             text = text.replace('в интернете', '')
             text = text.strip()
             self.openurl('https://www.google.com/search?q=' + text)
-            return '7'
+            return random.choice(self.phrases)
 
         # elif "создай" in text:
         #     dir_name = self.sp_to_txt.speech_to_text("ADD_DIR")
@@ -71,7 +73,7 @@ class ExpertSystemService:
         #     return
 
         elif "выход" in text:
-            #raise SystemExit
+            raise SystemExit
             return 'error'
 
 
