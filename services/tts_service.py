@@ -16,7 +16,8 @@ class TtsService:
     def initialize(self):
         device = torch.device('cpu')
         torch.set_num_threads(4)
-        local_file = 'D:\Programs\PycharmProject\marvin_m2\services\model.pt'
+        #local_file = 'D:\Programs\PycharmProject\marvin_m2\services\model.pt'
+        local_file = os.path.join(os.getcwd(), os.path.join('services', 'model.pt'))
 
         self.model = torch.package.PackageImporter(local_file).load_pickle("tts_models", "model")
         self.model.to(device)

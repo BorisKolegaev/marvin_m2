@@ -129,3 +129,9 @@ async function gen_txt() {
         generatedTxt.value = response;
     }
 }
+
+async function create_post() {
+    const generated_text = document.getElementById('generated-text').value;
+    const title = document.getElementById('post-title').value;
+    await eel.create_post(generated_text, title)()
+}

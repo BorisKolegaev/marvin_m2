@@ -5,8 +5,7 @@ import requests
 
 class OpenAiService:
     def __init__(self):
-        #openai.api_key = os.environ["OPENAI_API_KEY"]
-        openai.api_key = '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'
+        openai.api_key = os.environ["OPENAI_API_KEY"]
         self.messages = [
             {"role": "system", "content": "You are a kind helpful assistant."},
         ]
@@ -21,7 +20,7 @@ class OpenAiService:
 
     def send_message(self, msg):
         self.messages.append(
-            {"role": "user", "content": msg},
+            {"role": "user", "content": msg + '. Дай короткий ответ'},
         )
         chat = openai.ChatCompletion.create(
             model="gpt-3.5-turbo", messages=self.messages
