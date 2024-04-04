@@ -14,7 +14,7 @@ voice_thread = threading.Event()
 
 @eel.expose
 def load_page(page):
-    with open(PAGE_NAVIGATION[page], 'r') as file:
+    with open(PAGE_NAVIGATION[page], 'r', encoding='UTF-8') as file:
         return file.read()
 
 
